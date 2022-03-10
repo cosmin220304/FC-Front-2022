@@ -7,22 +7,18 @@ import "./App.css";
 
 const theme = extendTheme({
   colors: {
-    primary: {
-      light: "#14591D",
-      dark: "#0A210F",
-    },
-    secondary: {
-      light: "#F6FEDB",
-      dark: "#E6D3A3",
-    },
-    black: "#1a202c",
-    white: "#f7fafc",
+    "primary-light": "#F9EDCC",
+    primary: "#F9DF74",
+    "primary-dark": "#EDAE49",
+    "secondary-light": "#2C4251",
+    secondary: "#1a2730",
+    "secondary-dark": "#1a202c",
   },
 });
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box bg="secondary.light" className="app">
+    <Box bg="primary-light" className="app">
       <Topnav />
       <Routes />
       <Footer />
