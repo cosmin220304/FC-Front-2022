@@ -1,14 +1,29 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { Home, About } from "../components/pages";
+import React, { useContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { HomeLogged, HomeNotLogged, Login } from '../components/pages';
+import { UserContext } from '../hooks/UserContext';
 
 function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="about" element={<About />} />
-    </Routes>
-  );
+	const [ user ] = useContext(UserContext);
+
+	// private routes
+	if (!user) {
+		return (
+			<Routes>
+				<Route path="/" element={<HomeNotLogged />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Login />} />
+			</Routes>
+		);
+	}
+
+	return (
+		<Routes>
+			<Route path="/" element={<HomeLogged />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<Login />} />
+		</Routes>
+	);
 }
 
 export default AppRoutes;
