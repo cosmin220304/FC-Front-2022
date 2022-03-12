@@ -81,7 +81,9 @@ function Login() {
 					Autentificare
 				</Button>
 				<TextDelimiter text="or" />
-				<Button bg="white">Inregistrare</Button>
+				<Button onClick={() => navigate('/register')} bg="white">
+					Inregistrare
+				</Button>
 			</Flex>
 		</Box>
 	);

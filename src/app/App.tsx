@@ -18,7 +18,7 @@ const theme = extendTheme({
 
 export const App = () => (
 	<ChakraProvider theme={theme}>
-		<Box bg="whiteAlpha" className="app">
+		<Box bg="white" className="app">
 			<Topnav />
 			<Routes />
 			<Footer />
