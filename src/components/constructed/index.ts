@@ -1,4 +1,4 @@
-import Topnav from "./Topnav";
-import Footer from "./Footer";
+import Footer from './Footer';
+import Topnav from './Topnav';
 
-export { Topnav, Footer };
+export { Footer, Topnav };

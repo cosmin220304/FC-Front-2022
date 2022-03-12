@@ -1,6 +1,6 @@
-import HomeLogged from './HomeLogged';
-import HomeNotLogged from './HomeNotLogged';
 import Login from './Login';
+import Posts from './Posts';
 import Register from './Register';
+import Welcome from './Welcome';
 
-export { HomeLogged, HomeNotLogged, Login, Register };
+export { Login, Posts, Register, Welcome };

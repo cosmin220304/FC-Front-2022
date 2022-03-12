@@ -19,24 +19,40 @@ function Carousel({ images }: CarouselInterface) {
 	};
 
 	return (
-		<Box className="shaded-background" maxW={[ 'sm', 'lg' ]} borderRadius="lg">
+		<Box maxW={[ 'sm', 'lg' ]} borderRadius="lg">
 			<Image
+				bg="secondary-light"
 				p="2"
 				m="auto"
 				boxSize={[ 'sm', 'lg' ]}
 				objectFit="cover"
 				src={images[index]}
 				alt={`carousel-${index}`}
+				borderRadius="lg"
 			/>
 			{images.length > 1 && (
 				<Flex mt="1" justifyContent="space-between">
-					<Button variant="outline" fontSize="2xl" onClick={goLeft} w="40%">
+					<Button
+						bg="InactiveBorder"
+						color="secondary-dark"
+						variant="outline"
+						fontSize="2xl"
+						onClick={goLeft}
+						w="40%"
+					>
 						<FontAwesomeIcon icon={faArrowLeft} />
 					</Button>
 					<Text color="white" fontSize="2xl">
 						{index + 1}/{images.length}
 					</Text>
-					<Button variant="outline" fontSize="2xl" onClick={goRight} w="40%">
+					<Button
+						bg="InactiveBorder"
+						color="secondary-dark"
+						variant="outline"
+						fontSize="2xl"
+						onClick={goRight}
+						w="40%"
+					>
 						<FontAwesomeIcon icon={faArrowRight} />
 					</Button>
 				</Flex>

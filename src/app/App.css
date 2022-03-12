@@ -11,3 +11,9 @@
 .shaded-background-white {
 	background: repeating-linear-gradient(-45deg, #2c425118, #2c425118 10px, #ffffff 10px, #ffffff 20px);
 }
+
+@media only screen and (min-width: 30em) {
+	.post-card-buttons > * {
+		flex-direction: column;
+	}
+}

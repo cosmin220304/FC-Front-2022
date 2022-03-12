@@ -11,7 +11,7 @@ interface SaveButtonInterface {
 function SaveButton({ onClick, isSaved }: SaveButtonInterface) {
 	return (
 		<Button onClick={onClick} gap="2" display="flex" variant="unstyled">
-			<Icon fontSize="2xl" color={isSaved ? 'primary-dark' : 'white'}>
+			<Icon color={isSaved ? 'primary-dark' : 'white'}>
 				<FontAwesomeIcon icon={faStar} />
 			</Icon>
 			<Text>Save</Text>

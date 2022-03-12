@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { HomeLogged, HomeNotLogged, Login, Register } from '../components/pages';
+import { Posts, Welcome, Login, Register } from '../components/pages';
 import { UserContext } from '../hooks/UserContext';
 
 function AppRoutes() {
@@ -10,7 +10,7 @@ function AppRoutes() {
 	if (!user) {
 		return (
 			<Routes>
-				<Route path="/" element={<HomeNotLogged />} />
+				<Route path="/" element={<Welcome />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 			</Routes>
@@ -19,7 +19,7 @@ function AppRoutes() {
 
 	return (
 		<Routes>
-			<Route path="/" element={<HomeLogged />} />
+			<Route path="/" element={<Posts />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
 		</Routes>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Flex, Grid, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-function HomeNotLogged() {
+function Welcome() {
 	const navigate = useNavigate();
 
 	return (
@@ -27,4 +27,4 @@ function HomeNotLogged() {
 	);
 }
 
-export default HomeNotLogged;
+export default Welcome;
