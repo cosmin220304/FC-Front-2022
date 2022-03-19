@@ -1,3 +1,3 @@
-import PostCard from './PostCard';
+import PostInformation from './PostInformation';
 
-export { PostCard };
+export { PostInformation };

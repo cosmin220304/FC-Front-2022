@@ -30,8 +30,10 @@ function Carousel({ images }: CarouselInterface) {
 				alt={`carousel-${index}`}
 				borderRadius="lg"
 			/>
+			{/* Arrows for carousel */}
 			{images.length > 1 && (
 				<Flex mt="1" justifyContent="space-between">
+					{/* Left arrow */}
 					<Button
 						bg="InactiveBorder"
 						color="secondary-dark"
@@ -42,9 +44,13 @@ function Carousel({ images }: CarouselInterface) {
 					>
 						<FontAwesomeIcon icon={faArrowLeft} />
 					</Button>
+
+					{/* Index of current image */}
 					<Text color="white" fontSize="2xl">
 						{index + 1}/{images.length}
 					</Text>
+
+					{/* Right arrow */}
 					<Button
 						bg="InactiveBorder"
 						color="secondary-dark"

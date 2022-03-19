@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Button, Divider, Flex, Box } from '@chakra-ui/react';
-import { PostCard } from '../composites';
+import { Flex } from '@chakra-ui/react';
+import { PostCard } from '../constructed';
 import { CreatePostButton, SortByButtons } from '../blocks';
 
 function Posts() {
