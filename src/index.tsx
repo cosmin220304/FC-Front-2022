@@ -1,22 +1,25 @@
-import { ColorModeScript } from '@chakra-ui/react';
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './app';
-import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
-import { UserContextWrapper } from './hooks/UserContext';
+import { ColorModeScript } from "@chakra-ui/react";
+import * as React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./app";
+import reportWebVitals from "./reportWebVitals";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter } from "react-router-dom";
+import { UserContextWrapper } from "./hooks/UserContext";
+import PostContextProvider from "./hooks/PostContext";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<UserContextWrapper>
-			<BrowserRouter>
-				<ColorModeScript />
-				<App />
-			</BrowserRouter>
-		</UserContextWrapper>
-	</React.StrictMode>,
-	document.getElementById('root')
+  <React.StrictMode>
+    <PostContextProvider>
+      <UserContextWrapper>
+        <BrowserRouter>
+          <ColorModeScript />
+          <App />
+        </BrowserRouter>
+      </UserContextWrapper>
+    </PostContextProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
