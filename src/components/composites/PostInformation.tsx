@@ -30,7 +30,7 @@ function PostInformation({
 			</Text>
 
 			{!hideDescription && (
-				<Text h="15rem" overflow="scroll" bg="secondary-light" m="2" p="2" borderRadius="lg">
+				<Text overflow="scroll" bg="secondary-light" m="2" p="2" borderRadius="lg">
 					{description}
 				</Text>
 			)}
