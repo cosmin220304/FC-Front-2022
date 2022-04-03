@@ -9,7 +9,8 @@ import { UserContext } from "../../hooks/UserContext";
 
 function PostsList() {
   const { posts, dispatch, isPending } = useContext(PostContext);
-  const [user] = useContext(UserContext);
+  const { userState } = useContext(UserContext);
+  const { user } = userState;
 
   const [isOpen, setIsOpen] = useState(false);
   const [post, setPost] = useState<Partial<Post>>({});
@@ -20,10 +21,10 @@ function PostsList() {
     setIsOpen(false);
   };
   const handleOnSubmit = (post: Partial<Post>) => {
-    console.log(post, user.name);
+    console.log(post, user!.name);
     dispatch({
       type: "post",
-      payload: { ...post, author: user.name },
+      payload: { ...post, author: user!.name },
     });
     handleCloseModal();
   };

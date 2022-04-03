@@ -6,11 +6,13 @@ import {
   Welcome,
   Login,
   Register,
+  AdminDashboard,
 } from "../components/pages";
 import { UserContext } from "../hooks/UserContext";
 
 function AppRoutes() {
-  const [user] = useContext(UserContext);
+  const { userState } = useContext(UserContext);
+  const { user } = userState;
 
   // private routes
   if (!user) {
@@ -30,6 +32,8 @@ function AppRoutes() {
       <Route path="/posts/:postId" element={<PostDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      <Route path="/admin" element={<AdminDashboard />} />
     </Routes>
   );
 }
