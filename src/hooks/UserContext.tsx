@@ -40,21 +40,23 @@ const UserContext = React.createContext<IUserContext>({
 });
 
 const UserContextWrapper = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<IUser>();
-  const [userState, dispatch] = useReducer(userReducer, { user });
+  const [userState, dispatch] = useReducer(userReducer, {});
 
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
-      setUser(JSON.parse(user));
+      dispatch({
+        type: "set",
+        payload: JSON.parse(user),
+      });
     }
   }, []);
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
+    if (userState.user) {
+      localStorage.setItem("user", JSON.stringify(userState.user));
     }
-  }, [user]);
+  }, [userState.user]);
 
   return (
     <UserContext.Provider value={{ userState, dispatch }}>
