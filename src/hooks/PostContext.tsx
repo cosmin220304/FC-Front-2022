@@ -2,44 +2,65 @@ import { nanoid } from "nanoid";
 import React, { createContext, ReactNode, useReducer, useState } from "react";
 import { Post } from "../types";
 
-const postsList: PostsState = {
-  posts: [
-    {
-      id: "1",
-      author: "cosmin",
-      county: "Iasi",
+const getAllResponse: Post[] = [
+  {
+    id: "1",
+    post_id: "1",
+    status: "APPROVED",
+    reporter: "123",
+    content: {
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
       images: ["https://bit.ly/2Z4KKcF", "https://bit.ly/3Cz3EJf"],
-      upvotes: 1,
-      messages: [],
       createdDate: "2020-01-02T00:00:00.000Z",
+      county: "IASI",
+      reporterName: "Cosmin",
     },
-    {
-      id: "2",
-      author: "cosmin ",
-      county: "Iasi",
+    up_votes: 1,
+    down_votes: 1,
+  },
+  {
+    id: "2",
+    post_id: "1",
+    status: "APPROVED",
+    reporter: "123",
+    content: {
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
       images: ["https://bit.ly/2Z4KKcF"],
-      upvotes: 3,
-      messages: [],
-      createdDate: "2020-01-01T00:00:00.000Z",
+      createdDate: "2020-01-02T00:00:00.000Z",
+      county: "IASI",
+      reporterName: "Cosmin",
     },
-    {
-      id: "3",
-      author: "cosmin",
-      county: "Iasi",
+    up_votes: 1,
+    down_votes: 1,
+  },
+  {
+    id: "3",
+    post_id: "1",
+    status: "APPROVED",
+    reporter: "123",
+    content: {
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-      upvotes: 2,
-      messages: [],
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
       createdDate: "2020-01-02T00:00:00.000Z",
+      county: "IASI",
+      reporterName: "Cosmin",
     },
-  ],
+    up_votes: 1,
+    down_votes: 1,
+  },
+];
+
+const getByIdResponse = (id: string): Post[] => {
+  return getAllResponse.filter((post) => post.id === id);
+};
+
+const postsList: PostsState = {
+  posts: getAllResponse,
   isPending: false,
 };
 
@@ -47,9 +68,15 @@ type PostsState = {
   posts: Post[];
   isPending: boolean;
 };
-type GetAction = {
-  type: "get";
+type GetAllAction = {
+  type: "getAll";
   payload: {};
+};
+type GetByIdAction = {
+  type: "getById";
+  payload: {
+    id: string;
+  };
 };
 type PostAction = {
   type: "post";
@@ -71,7 +98,8 @@ type SortAction = {
 };
 
 type PostsAction =
-  | GetAction
+  | GetAllAction
+  | GetByIdAction
   | PostAction
   | PutAction
   | DeleteAction
@@ -79,23 +107,35 @@ type PostsAction =
 
 const postsReducer = (state: PostsState, action: PostsAction): PostsState => {
   switch (action.type) {
-    case "get": {
-      return state;
+    case "getAll": {
+      return {
+        ...state,
+        posts: getAllResponse,
+      };
+    }
+    case "getById": {
+      return {
+        ...state,
+        posts: getByIdResponse(action.payload.id),
+      };
     }
     case "post": {
-      const newPost = {
-        ...{
-          author: "",
-          county: "",
+      const newPost: Post = {
+        id: nanoid(),
+        reporter: nanoid(),
+        post_id: nanoid(),
+        status: "PENDING_APPROVAL",
+        content: {
           title: "",
           description: "",
           images: [],
+          createdDate: new Date().toISOString(),
+          county: "",
+          reporterName: "",
         },
+        up_votes: 0,
+        down_votes: 0,
         ...action.payload,
-        id: nanoid(),
-        createdDate: new Date().toISOString(),
-        upvotes: 0,
-        messages: [],
       };
       return { ...state, posts: [...state.posts, newPost] };
     }
@@ -120,8 +160,8 @@ const postsReducer = (state: PostsState, action: PostsAction): PostsState => {
             ...state,
             posts: state.posts.sort(
               (left, right) =>
-                -new Date(left.createdDate).getTime() +
-                new Date(right.createdDate).getTime()
+                -new Date(left.content.createdDate).getTime() +
+                new Date(right.content.createdDate).getTime()
             ),
           };
         }
@@ -129,7 +169,7 @@ const postsReducer = (state: PostsState, action: PostsAction): PostsState => {
           return {
             ...state,
             posts: state.posts.sort(
-              (left, right) => -left.upvotes + right.upvotes
+              (left, right) => -left.up_votes + right.up_votes
             ),
           };
         }

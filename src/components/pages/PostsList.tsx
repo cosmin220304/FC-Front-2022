@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { CreatePostModal, PostCard } from "../constructed";
 import { CreatePostButton, SortByButtons } from "../blocks";
 import { PostContext } from "../../hooks/PostContext";
 import { Post } from "../../types";
-import { useFormik } from "formik";
 import { UserContext } from "../../hooks/UserContext";
 
 function PostsList() {
@@ -12,8 +11,14 @@ function PostsList() {
   const { userState } = useContext(UserContext);
   const { user } = userState;
 
+  useEffect(() => {
+    dispatch({
+      type: "getAll",
+      payload: {},
+    });
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
-  const [post, setPost] = useState<Partial<Post>>({});
   const handleOpenModal = () => {
     setIsOpen(true);
   };
