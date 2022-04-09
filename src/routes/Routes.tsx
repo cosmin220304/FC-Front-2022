@@ -7,6 +7,7 @@ import {
   Login,
   Register,
   AdminDashboard,
+  Profile,
 } from "../components/pages";
 import { UserContext } from "../hooks/UserContext";
 
@@ -32,6 +33,7 @@ function AppRoutes() {
       <Route path="/posts/:postId" element={<PostDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
 
       <Route path="/admin" element={<AdminDashboard />} />
     </Routes>
